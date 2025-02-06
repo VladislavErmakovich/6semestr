@@ -1,7 +1,12 @@
 org 100h
 
+    mov dx, 0xfffeh
+    mov al, 80h
+    out dx, al
+
 targ:
-    mov dx, 0xfff9h
+    ;mov dx, 0xfff9h
+    mov dx, 0xfffbh
     in al, dx
     cmp al, 128
     je act
@@ -13,11 +18,14 @@ act:
     je exit
     mov cx, 3
     mov al, 10000000b
-    mov dx, 0xfff8h 
+    ;mov dx, 0xfff8h
+    mov dx, 0xfffah
     out dx, al
+    call delay1
     
 loop1:
-    mov dx, 0xfff8h
+    ;mov dx, 0xfff8h 
+    mov dx, 0xfffah
     shr al, 1
     or al, 10000000b
     out dx, al
@@ -27,7 +35,8 @@ loop1:
     mov cx, 4 
 
 loop2:
-    mov dx, 0xfff8h
+    ;mov dx, 0xfff8h
+    mov dx, 0xfffah
     shl al, 1
     or al, 00010001b
     out dx, al
@@ -47,7 +56,8 @@ dis:
     mov cx, 4
     
 loop3:
-    mov dx, 0xfff8h
+    ;mov dx, 0xfff8h
+    mov dx, 0xfffah
     shr al, 1
     out dx, al
     call delay2
@@ -56,7 +66,8 @@ loop3:
     mov cx, 4
     
 loop4:
-    mov dx, 0xfff8h
+    ;mov dx, 0xfff8h
+    mov dx, 0xfffah
     shl al,1
     xor al, 00010000b
     out dx, al
@@ -72,7 +83,7 @@ proc delay1
     
     cyc1:
     mov dx, cx
-    mov cx, 0xffffh
+    mov cx, 0xh
     cyc2:
     loop cyc2
     mov cx, dx
@@ -88,7 +99,7 @@ proc delay2
     
     cyc3:
     mov dx, cx
-    mov cx, 0xffffh
+    mov cx, 0x8000h
     cyc4:
     loop cyc4
     mov cx, dx
