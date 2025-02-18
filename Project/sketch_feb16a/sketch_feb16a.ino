@@ -1,5 +1,5 @@
 #include <FastLED.h>
-#define LENGTH_LED 15
+#define LENGTH_LED 45
 #define PIN 7
 
 CRGB leds[LENGTH_LED];
@@ -35,15 +35,15 @@ void loop() {
   if(parseStart ==1)
   {
     int message = msg.toInt();
-    if (message < 85)
+    if (message < 200)
     {
-      message = 85;
+      message = 200;
     }
-    if(message > 800)
+    if(message > 400)
     {
       message = 800;
     }
-    message = map(message , 85, 800, 0 , 255);
+    message = map(message , 200, 800, 0 , 255);
     for (int led = 0;led< LENGTH_LED; led++)
     {
       leds[led] = CHSV(180,255, message);
