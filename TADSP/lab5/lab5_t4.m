@@ -1,27 +1,34 @@
+clear workspace
+
 f = 2;
 w_0 = f*2*pi;
 n = 8;
+f_shift = 5;
 
-[num, den, k] = butter(n,w_0,'s');
+[num, den, k] = butter(n, w_0, 's');
+
 syms w t;
-% Исходная импульсная характеристика
-h = ifourier(k / prod(1i*w - den(1:8)), w, t);
 
-% Модификация: сдвиг на 5 Гц
-h_mod_sym = h * exp(1i*2*pi*5*t);
+D = prod(1i*w - den(1:n));
 
-% Преобразование в численную функцию
-h_mod_func = matlabFunction(h_mod_sym, 'Vars', t);
+H = k*1/D;
 
-% Вычисление значений
+h = ifourier(H, w, t);
+
+h_shift = h * exp(1i*2*pi*f_shift*t);
+h_shift_func = matlabFunction(h_shift, 'Vars', t);
+
+% Построение графика
 t_vals = linspace(0, 1, 1000);
-h_mod_vals = arrayfun(h_mod_func, t_vals);
+h_mod_vals = arrayfun(h_shift_func, t_vals);
 
 % Построение графика
 figure;
 plot(t_vals, real(h_mod_vals), 'b', t_vals, imag(h_mod_vals), 'r');
-legend('Re(h_{mod})', 'Im(h_{mod})');
+legend('Re(h_{shift})', 'Im(h_{shift})');
 title('Модифицированная импульсная характеристика');
-xlabel('Время (с)');
+xlabel('t(с)');
 ylabel('Амплитуда');
 grid on;
+
+
