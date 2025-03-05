@@ -1,8 +1,11 @@
 org 100h 
 
+;mov dx, 0xffeah
+;mov al, 00h
+;out dx, al  
 
 main:
-    mov dx, 0xffe7h
+    mov dx, 0xffe7h ;0xffeah
     mov al, 0x0090h
     out dx, al
     mov cx, 0x0008h

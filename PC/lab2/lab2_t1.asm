@@ -1,8 +1,16 @@
-org 100h
-main:
-    mov dx, 0xffe7h
+org 100h 
+
+;mov dx, 0xfffeh
+;mov al, 80h
+;out dx, al 
+
+main: 
+    mov dx, 0xffe7h; 0xffeah
+    mov al, 0x0040h ;0x00h
+    out dx, al 
+    
     mov al, 0x0040h
-    out dx, al
+    out dx, al  
 m:
     in al, dx
     and al, 0x000fh
@@ -17,5 +25,7 @@ b:
     jl b
     mov al, bl
     out dx, al
-    mov dx, 0xffe7h
-    jmp m
+    mov dx, 0xffe7h; 0xffeah
+    jmp m 
+    
+    
