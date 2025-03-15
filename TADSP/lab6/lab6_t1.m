@@ -1,4 +1,4 @@
-clear workspace
+clear 
 
 fs = 4000;
 duration = 0.5; % длительность  
@@ -18,12 +18,8 @@ for i = 1:size(freqs, 1)
     dtmf_signals = [dtmf_signals, dtmf_signal, zeros(1, round(pause * fs))]; 
 end
 
-dtmf_signals = dtmf_signals / max(abs(dtmf_signals));
 
 sound(dtmf_signals, fs);
-
-
-audiowrite('lab6_t1_375.wav', dtmf_signals, fs);
 
 time= 0:1/fs:(length(dtmf_signals)-1)/fs; 
 figure;
