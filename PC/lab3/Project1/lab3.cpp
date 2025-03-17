@@ -1,86 +1,101 @@
-#include "func.h"
+п»ї#include "func.h"
 #include <iostream>
 #include <string>
-#include <cstdlib>
-#include <clocale>
+#include <stdexcept>
 #include <limits>
-#include <cmath>
 
 using namespace std;
 
 void clearScreen() {
-	system("cls || clear");
+    system("cls || clear");
 }
 
-void main() {
+
+int main() {
+    
     setlocale(LC_ALL, "Russian");
     int choice;
     string input;
 
     do {
         clearScreen();
-        cout << "\n\tМеню\n"
-            << "[1] Задание 1\n"
-            << "[2] Задание 2\n"
-            << "[3] Задание 3\n"
-            << "[4] Дополнительное задание\n"
-            << "[5] Выход\n";
+        cout << "\n\t      РњР•РќР® РџР РћР“Р РђРњРњР«  \n"
+            << "\n\t 1. Р—Р°РґР°РЅРёРµ 1         "
+            << "\n\t 2. Р—Р°РґР°РЅРёРµ 2         "
+            << "\n\t 3. Р—Р°РґР°РЅРёРµ 3         "
+            << "\n\t 4. Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕРµ    "
+            << "\n\t 5. Р’С‹С…РѕРґ             "
+            << "\n\nР’С‹Р±РѕСЂ > ";
 
         getline(cin, input);
 
-        // Проверка на корректность ввода
         try {
             choice = stoi(input);
-        }
-        catch (...) {
-            cout << "Ошибка! Введите число от 1 до 5.\n";
-            system("pause");
-            continue;
-        }
 
-        // Обработка выбора
-        switch (choice) {
-        case 1:
-            task1();
-            break;
-        case 2:
-            task2();
-            break;
-        /*case 3:
-            task3();
-            break;*/
-        //case 4:
-           // additionalTask();
-           // break;
-        case 5:
-            cout << "Выход из программы...\n";
-            break;
-        default:
-            cout << "Неверный пункт! Введите число от 1 до 5.\n";
-            system("pause");
+            if (choice < 1 || choice > 5) {
+                throw out_of_range("");
+            }
+
+            switch (choice) {
+            case 1:
+                task1();
+                break;
+            case 2:
+                task2();
+                break;
+            case 3:
+                task3();
+                break;
+            case 4:
+                dop();
+                break;
+            case 5:
+                if (confirmExit()) return 0;
+                continue;
+            }
+
+            // РџР°СѓР·Р° РїРѕСЃР»Рµ РІС‹РїРѕР»РЅРµРЅРёСЏ Р·Р°РґР°РЅРёСЏ
+            cout << "\nРћРїРµСЂР°С†РёСЏ Р·Р°РІРµСЂС€РµРЅР°. РќР°Р¶РјРёС‚Рµ Enter...";
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
         }
-    } while (choice != 5);
- 
+        catch (const invalid_argument&) {
+            cout << "\nРћС€РёР±РєР°! Р’РІРµРґРёС‚Рµ С‡РёСЃР»Рѕ РѕС‚ 1 РґРѕ 5";
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+        catch (const out_of_range&) {
+            cout << "\nРќРµРІРµСЂРЅС‹Р№ РїСѓРЅРєС‚ РјРµРЅСЋ! Р”РѕРїСѓСЃС‚РёРјС‹Рµ Р·РЅР°С‡РµРЅРёСЏ: 1-5";
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    } while (true);
+}
+
+bool confirmExit() {
+    clearScreen();
+    cout << "\nР’С‹ СѓРІРµСЂРµРЅС‹? (y/n): ";
+    string answer;
+    getline(cin, answer);
+    return !answer.empty() && (tolower(answer[0]) == 'y');
 }
 
 void task1() {
     clearScreen();
-    cout << "Посчитайте значение функции\nВведите значения для x1 и x2\n";
+    cout << "РџРѕСЃС‡РёС‚Р°Р№С‚Рµ Р·РЅР°С‡РµРЅРёРµ С„СѓРЅРєС†РёРё\nР’РІРµРґРёС‚Рµ Р·РЅР°С‡РµРЅРёСЏ РґР»СЏ x1 Рё x2\n";
 
     float x1 , x2 , y;
-    float pi = 3.14159265358979323846;
+    float pi = 3.141592653589793;
     int one = 1, two = 2, four = 4;
-    std::cout << "Введите первое число (x1): ";
+    std::cout << "Р’РІРµРґРёС‚Рµ РїРµСЂРІРѕРµ С‡РёСЃР»Рѕ (x1): ";
     std::cin >> x1;
 
-    std::cout << "Введите второе число (x2): ";
+    std::cout << "Р’РІРµРґРёС‚Рµ РІС‚РѕСЂРѕРµ С‡РёСЃР»Рѕ (x2): ";
     std::cin >> x2;
     
     //y = (1-2sin(x1-pi/4)^2)/(1+cos(4*x2))
     _asm {
         finit
         fld x1 //st(0) = x1
-        fld pi // st(0) = pi, st(1) = x1
+        FLDPI // st(0) = pi, st(1) = x1
         fild four // st(0) = 4, st(1) = pi, st(2) = x1
         fdivp ST(1), ST(0) //st(0) = pi/4, st(1) = x1
         fsubp ST(1), ST(0) // ST(0) = x1 - pi/4
@@ -101,53 +116,138 @@ void task1() {
         fdivp ST(1), ST(0)
         fstp y
     }
-    cout << " Результат FPU y = " << y << endl;
+    cout << " Р РµР·СѓР»СЊС‚Р°С‚ FPU y = " << y << endl;
     float y_Cpp = (1 - 2 * pow(sin(x1 - pi / 4),2)) / (1 + cos(4 * x2));
-    cout << " Результат C++ y = " << y_Cpp << endl;
+    cout << " Р РµР·СѓР»СЊС‚Р°С‚ C++ y = " << y_Cpp << endl;
     system("pause");
 }
 
 void task2() {
-clearScreen();
-int array_size;
-cout << "Разделить каждый элемент массива на значение косинуса первого элемента.\nВведите размер массива";
-std::cout << "Размер массива: ";
-std::cin >> array_size;
-float* array = new float[array_size];
-for (short i = 0; i < array_size; i++)
-    cin >> array[i];
-for (short i = 0; i < array_size; i++)
-    cout << "array[" << i << "] = " << array[i] << endl;
+    clearScreen();
+    int array_size;
+    cout << "Р Р°Р·РґРµР»РёС‚СЊ РєР°Р¶РґС‹Р№ СЌР»РµРјРµРЅС‚ РјР°СЃСЃРёРІР° РЅР° Р·РЅР°С‡РµРЅРёРµ РєРѕСЃРёРЅСѓСЃР° РїРµСЂРІРѕРіРѕ СЌР»РµРјРµРЅС‚Р°.\nР’РІРµРґРёС‚Рµ СЂР°Р·РјРµСЂ РјР°СЃСЃРёРІР°";
+    std::cout << "Р Р°Р·РјРµСЂ РјР°СЃСЃРёРІР°: ";
+    std::cin >> array_size;
 
-_asm {
-    mov ECX, array_size    // Загружаем размер массива
-    test ECX, ECX          // Проверяем на пустой массив
-    jz done                // Выход если размер 0
+    float* array = new float[array_size];
+    float* array_cpp = new float[array_size];
+    std::copy(array_cpp, array_cpp + array_size, array);
 
-    mov EDI, array         // Загружаем адрес массива
-    finit                  // Инициализация FPU
+    for (short i = 0; i < array_size; i++)
+        cin >> array[i];
+    for (short i = 0; i < array_size; i++)
+        cout << "array[" << i << "] = " << array[i] << endl;
 
-    fld dword ptr[EDI]    // ST(0) = array[0]
-    fcos                   // ST(0) = cos(array[0])
-    fstp ST(1)             // Переносим значение в ST(1), очищаем ST(0)
+
+    float cos_val;
+    _asm {
+        mov ECX, array_size    // Р—Р°РіСЂСѓР¶Р°РµРј СЂР°Р·РјРµСЂ РјР°СЃСЃРёРІР°
+        test ECX, ECX          // РџСЂРѕРІРµСЂСЏРµРј РЅР° РїСѓСЃС‚РѕР№ РјР°СЃСЃРёРІ
+        jz done                // Р’С‹С…РѕРґ РµСЃР»Рё СЂР°Р·РјРµСЂ 0
+        mov EDI, array // Р·Р°РЅРѕСЃРё РІ EDI Р°РґСЂРµСЃ РјР°СЃСЃРёРІР°
+        finit                  // РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ FPU
+
+        fld dword ptr[EDI]    // st(0)=array[n]
+        fcos    //st(0)=cos(array[0])
+        fstp dword ptr[cos_val] //СЃРѕС…СЂР°РЅСЏРµРј Р·РЅР°С‡РµРЅРёРµ РєРѕСЃРёРЅСѓСЃР° 
 
     process_loop:
-    fld dword ptr[EDI]    // ST(0) = текущий элемент
-    fdiv ST(1),ST(0)             // Делим на cos(array[0]) из ST(1)
-    fstp dword ptr[EDI]   // Сохраняем результат обратно
-    add EDI, 4             // Переход к следующему элементу
-    loop process_loop      // Повторяем для всех элементов
+        fld dword ptr[EDI]    // st(0)=array[n]
+        fdiv dword ptr[cos_val] // st(0) = array[n]/cos(array[0])
+        fstp dword ptr[EDI]   // РЎРѕС…СЂР°РЅСЏРµРј СЂРµР·СѓР»СЊС‚Р°С‚ РѕР±СЂР°С‚РЅРѕ
+        add EDI, 4             // РџРµСЂРµС…РѕРґ Рє СЃР»РµРґСѓСЋС‰РµРјСѓ СЌР»РµРјРµРЅС‚Сѓ
+        loop process_loop      // РџРѕРІС‚РѕСЂСЏРµРј РґР»СЏ РІСЃРµС… СЌР»РµРјРµРЅС‚РѕРІ
 
-    ffree ST(0)            // Очищаем регистры FPU
-    ffree ST(1)
+        ffree ST(0)            // РћС‡РёС‰Р°РµРј СЂРµРіРёСЃС‚СЂС‹ FPU
+        ffree ST(1)
     done:
 }
 
-// Вывод результатов
-cout << "\nРезультат:" << endl;
-for (short i = 0; i < array_size; i++)
-    cout << "array[" << i << "] = " << array[i] << endl;
+    cout << "\nР РµР·СѓР»СЊС‚Р°С‚ FPU:" << endl;
+    for (short i = 0; i < array_size; i++)
+        cout << "array[" << i << "] = " << array[i] << endl;
 
-delete[] array;
-system("pause");
+    for (short i = 0; i < array_size; i++)
+        array_cpp[i] = array_cpp[i] / cos_val;
+
+    cout << "\nР РµР·СѓР»СЊС‚Р°С‚ C++:" << endl;
+    for (short i = 0; i < array_size; i++)
+        cout << "array[" << i << "] = " << array[i] << endl;
+
+    delete[] array;
+    delete[] array_cpp;
+    system("pause");
+}
+
+void task3() {
+    clearScreen();
+
+    system("pause");
+}
+
+void dop() {
+    clearScreen();
+    cout << "РџРѕСЃС‡РёС‚Р°Р№С‚Рµ Р·РЅР°С‡РµРЅРёРµ С„СѓРЅРєС†РёРё\nР’РІРµРґРёС‚Рµ Р·РЅР°С‡РµРЅРёСЏ РґР»СЏ y Рё x\n";
+
+    float x, y, R;
+    std::cout << "Р’РІРµРґРёС‚Рµ РїРµСЂРІРѕРµ С‡РёСЃР»Рѕ (x): ";
+    std::cin >> x;
+
+    std::cout << "Р’РІРµРґРёС‚Рµ РІС‚РѕСЂРѕРµ С‡РёСЃР»Рѕ (y): ";
+    std::cin >> y;
+    // cos(x)*sqrt(sin(y)*x^y)) / (y *log2(x+1))+exp(y)-tan(x/y)-2^(x-1)
+    _asm{
+       finit
+       fld x // st(0) = x
+       fcos // st(0) = cos(x)
+       fld y // st(0) = y, st(1)=cos(x)
+       fld x // st(0) =x, st(1)= y, st(2) = cos(x)
+       FYL2X // ST(0) = y*log2(x), ST(1) = cos(x)
+       F2XM1 // ST(0) = 2^(y*log2(x)) -1, st(1) = cos(x)
+       fld1 // st(0) = 1, st(1) = 2^(y*log2(x)) -1, st(2) = cos(x)
+       faddp ST(1), ST(0) // st(0) = 2^(y*log2(x))-> x^y, st(1) = cos(x)
+       fld y // st(0) = y , st(1) = x^y, st(2) = cos(x)
+       fsin // st(0) = sin(y) , st(1) = x^y, st(2) = cos(x)
+       fmulp ST(1), ST(0) // st(0) = sin(y)*x^y, st(1) = cos(x)
+       fsqrt // st(0) = sqrt(sin(y)*x^y), st(1) = cos(x)
+       fmul ST(1), ST(0) // st(0) = cos(x)*sqrt(sin(y)*x^y)
+       fld y // st(0) = y, st(1) = cos(x)*sqrt(sin(y)*x^y)
+       fld x // st(0) = x, st(1) =y, st(2) = cos(x)*sqrt(sin(y)*x^y)
+       fld1 // st(0) =1, st(1) = x, st(2) =y, st(3) = cos(x)*sqrt(sin(y)*x^y)
+       faddp ST(1), ST(0) // st(0) =x+1, st(1) =y, st(2) = cos(x)*sqrt(sin(y)*x^y)
+       FYL2X // st(0) = y*log2(x+1), st(1) = cos(x)*sqrt(sin(y)*x^y)
+       fdivp ST(1), ST(0) // st(0) =  (cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1)
+
+       FLDL2E // st(0) = log2(e), st(1) = (cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1)
+       fld y //st(0) =y, st(1) = log2(e) , st(2) = (cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1)
+       fmulp ST(1), ST(0) // st(0) = y*log2(e), st(1) =(cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1)
+       F2XM1 // st(0) = 2^(y*log2(e)) -1, st(1) =(cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1)
+       fld1 // st(0) =1, st(1) = 2^(y*log2(e)) -1, st(2) = (cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1)
+       faddp ST(1), ST(0) // st(0) = 2^(y*log2(e)) -> e^y, st(1) = (cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1)
+       
+       faddp ST(1), ST(0) // st(0) = (cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1) + e^y
+
+       fld x // st(0) =x , st(1) =(cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1) + e^y
+       fld y // st(0) =y, st(1) = x, st(2) =(cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1) + e^y
+       fdivp ST(1), ST(0) // st(0) = x/y, st(1) =(cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1) + e^y
+       fptan //st(0) =1, st(1) = tan(x/y), st(2) = (cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1) + e^y
+       fstp ST(0) // st(0) = tan(x/y) ,st(1) = (cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1) + e^y
+       fsubp ST(1), ST(0) // st(0) =(cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1) + e^y - tan(x/y)
+
+       fld x // st(0) = x, st(1) =(cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1) + e^y - tan(x/y)
+       fld1 // st(0) =1, st(1) = x, st(2) = (cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1) + e^y - tan(x/y)
+       fsubp ST(1), ST(0) // st(0) = x-1, st(1) = (cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1) + e^y - tan(x/y)
+       F2XM1 // st(0) = 2^(x-1) - 1 ,st(1) =(cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1) + e^y - tan(x/y)
+       fld1 // st(0) =1, st(1) = 2^(x-1) -1 , st(2) = (cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1) + e^y - tan(x/y)
+       faddp ST(1), ST(0) // st(0) = 2^(x-1), st(1) = (cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1) + e^y - tan(x/y)
+       fsubp ST(1), ST(0) // st(0)= (cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1) + e^y - tan(x/y) -2^(x-1)
+       fst R
+    }   
+
+    cout << "Р РµР·СѓР»СЊС‚Р°С‚ РІС‹С‡РµСЃР»РµРЅРёСЏ FPU: " << R << endl;
+    float R_cpp = (cos(x) * sqrt(sin(y)*pow(x,y))) / (y * log2(x + 1)) + exp(y) - tan(x / y) - exp2(x-1);
+    cout << "Р РµР·СѓР»СЊС‚Р°С‚ РІС‹С‡РµСЃР»РµРЅРёСЏ C++: " << R_cpp << endl;
+
+
+    system("pause");
 }
