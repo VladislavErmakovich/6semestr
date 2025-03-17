@@ -1,0 +1,5 @@
+﻿  lab3.cpp
+E:\3 курс\6semestr\PC\lab3\Project1\lab3.cpp(15,6): warning C4326: возвращаемый тип "main" должен быть "int", а не "void"
+E:\3 курс\6semestr\PC\lab3\Project1\lab3.cpp(71,14): warning C4305: инициализация: усечение из "double" в "float"
+E:\3 курс\6semestr\PC\lab3\Project1\lab3.cpp(105,17): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+  Project1.vcxproj -> E:\3 курс\6semestr\PC\lab3\Project1\Debug\Project1.exe
