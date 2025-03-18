@@ -10,7 +10,6 @@ void clearScreen() {
     system("cls || clear");
 }
 
-
 int main() {
     
     setlocale(LC_ALL, "Russian");
@@ -200,31 +199,50 @@ void dop() {
        finit
        fld x // st(0) = x
        fcos // st(0) = cos(x)
+
        fld y // st(0) = y, st(1)=cos(x)
        fld x // st(0) =x, st(1)= y, st(2) = cos(x)
        FYL2X // ST(0) = y*log2(x), ST(1) = cos(x)
-       F2XM1 // ST(0) = 2^(y*log2(x)) -1, st(1) = cos(x)
-       fld1 // st(0) = 1, st(1) = 2^(y*log2(x)) -1, st(2) = cos(x)
-       faddp ST(1), ST(0) // st(0) = 2^(y*log2(x))-> x^y, st(1) = cos(x)
+       fld st(0) // st(0) = y*log2(x), st(1) = y*log2(x), st(2)= cos(x) 
+       frndint //st(0) = целая часть y*log2(x), st(1) = y*log2(x), st(2)= cos(x) 
+       fsub ST(1), ST(0) //st(0) = целая часть y*log2(x), st(1) = дробная y*log2(x), st(2)= cos(x) 
+       fxch // st(0) = дроб ная y*log2(x), st(1) = целая часть y*log2(x)
+       F2XM1 // ST(0) =дробная 2^(y*log2(x)) -1, st(1) = целая часть y*log2(x), st(2) = cos(x)
+       fld1 // st(0) = 1, ST(1) =дробная 2^(y*log2(x)) -1, st(2) = целая часть y*log2(x), st(3) = cos(x)
+       faddp ST(1), ST(0) // st(0) = дробная 2^(y*log2(x)), st(1) = целая часть y*log2(x), st(2) = cos(x)
+       fscale // st(0) = дробная 2^(y*log2(x)) * 2^(целая часть y*log2(x)) -> x^y, st(1) = целая часть y*log2(x), st(2) = cos(x)
+       fxch // st(0) = целая часть y*log2(x), st(1) = x^y, st(2) = cos(x)
+       FSTP ST(0) // st(0) = x^y, st(1) = cos(x)
+
        fld y // st(0) = y , st(1) = x^y, st(2) = cos(x)
-       fsin // st(0) = sin(y) , st(1) = x^y, st(2) = cos(x)
+       fsin // st(0) = sin(y) , st(1) = x^y, st(2) = cos(x)      
        fmulp ST(1), ST(0) // st(0) = sin(y)*x^y, st(1) = cos(x)
        fsqrt // st(0) = sqrt(sin(y)*x^y), st(1) = cos(x)
+       
        fmul ST(1), ST(0) // st(0) = cos(x)*sqrt(sin(y)*x^y)
+       
        fld y // st(0) = y, st(1) = cos(x)*sqrt(sin(y)*x^y)
        fld x // st(0) = x, st(1) =y, st(2) = cos(x)*sqrt(sin(y)*x^y)
        fld1 // st(0) =1, st(1) = x, st(2) =y, st(3) = cos(x)*sqrt(sin(y)*x^y)
        faddp ST(1), ST(0) // st(0) =x+1, st(1) =y, st(2) = cos(x)*sqrt(sin(y)*x^y)
        FYL2X // st(0) = y*log2(x+1), st(1) = cos(x)*sqrt(sin(y)*x^y)
+       
        fdivp ST(1), ST(0) // st(0) =  (cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1)
 
        FLDL2E // st(0) = log2(e), st(1) = (cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1)
        fld y //st(0) =y, st(1) = log2(e) , st(2) = (cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1)
        fmulp ST(1), ST(0) // st(0) = y*log2(e), st(1) =(cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1)
-       F2XM1 // st(0) = 2^(y*log2(e)) -1, st(1) =(cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1)
-       fld1 // st(0) =1, st(1) = 2^(y*log2(e)) -1, st(2) = (cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1)
-       faddp ST(1), ST(0) // st(0) = 2^(y*log2(e)) -> e^y, st(1) = (cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1)
-       
+       fld st(0) // st(0) = y*log2(e), st(1) = y*log2(e), st(2) =(cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1)
+       frndint // st(0) = целая часть y*log2(e), st(1) = y*log2(e), st(2) =(cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1)
+       fsub ST(1), ST(0) // st(0) = целая часть y*log2(e), st(1) = дробная y*log2(e), st(2) =(cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1)
+       fxch // st(0) = дробная часть y*log2(e), st(1) = целая y*log2(e), st(2) =(cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1)
+       F2XM1 // st(0) = дробная часть 2^(y*log2(e)) -1, st(1) = целая y*log2(e), st(2) =(cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1)
+       fld1 // st(0) =1, st(1) = дробная часть 2^(y*log2(e)) -1, st(2) = целая y*log2(e), st(3) =(cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1)
+       faddp ST(1), ST(0) // st(0) = дробная часть 2^(y*log2(e)), st(1) = целая y*log2(e), st(2) =(cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1)
+       fscale // st(0) = дробная часть 2^(y*log2(e)) * 2^(целая y*log2(e)) -> e^y, st(1) = целая y*log2(e), st(2) =(cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1)
+       fxch // st(0) = целая y*log2(e), st(1) = e^y, st(2) = (cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1)
+       FSTP ST(0) // st(0) = e^y, st(1) = (cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1)
+
        faddp ST(1), ST(0) // st(0) = (cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1) + e^y
 
        fld x // st(0) =x , st(1) =(cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1) + e^y
@@ -237,9 +255,11 @@ void dop() {
        fld x // st(0) = x, st(1) =(cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1) + e^y - tan(x/y)
        fld1 // st(0) =1, st(1) = x, st(2) = (cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1) + e^y - tan(x/y)
        fsubp ST(1), ST(0) // st(0) = x-1, st(1) = (cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1) + e^y - tan(x/y)
-       F2XM1 // st(0) = 2^(x-1) - 1 ,st(1) =(cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1) + e^y - tan(x/y)
-       fld1 // st(0) =1, st(1) = 2^(x-1) -1 , st(2) = (cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1) + e^y - tan(x/y)
-       faddp ST(1), ST(0) // st(0) = 2^(x-1), st(1) = (cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1) + e^y - tan(x/y)
+       fld1 // st(0) = 1, st(1) = x-1, st(2) = (cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1) + e^y - tan(x/y)
+       fscale // st(0) = 2^(x-1), st(1) = x-1, st(2) = (cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1) + e^y - tan(x/y)
+       fxch // st(0) = x-1, st(1) = 2^(x-1), st(2) = (cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1) + e^y - tan(x/y)
+       FSTP ST(0) // st(0) = 2^(x-1), st(1) = (cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1) + e^y - tan(x/y)
+
        fsubp ST(1), ST(0) // st(0)= (cos(x)*sqrt(sin(y)*x^y))/y*log2(x+1) + e^y - tan(x/y) -2^(x-1)
        fst R
     }   
