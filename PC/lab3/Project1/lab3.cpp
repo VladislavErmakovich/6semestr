@@ -4,14 +4,76 @@
 #include <stdexcept>
 #include <limits>
 
+#define T 3.0           // Длительность сигнала (сек)
+#define F0 500.0        // Начальная частота (Гц)
+#define F1 6000.0       // Конечная частота (Гц)
+#define FS 16000.0      // Частота дискретизации (Гц)
+#define A 10.0          // Амплитуда (Гц)
+#define PI 3.14159265358979323846
+
+typedef struct {
+    char chunkID[4];
+    uint32_t chunkSize;
+    char format[4];
+    char subchunk1ID[4];
+    uint32_t subchunk1Size;
+    uint16_t audioFormat;
+    uint16_t numChannels;
+    uint32_t sampleRate;
+    uint32_t byteRate;
+    uint16_t blockAlign;
+    uint16_t bitsPerSample;
+    char subchunk2ID[4];
+    uint32_t subchunk2Size;
+} WavHeader;
+
 using namespace std;
 
 void clearScreen() {
     system("cls || clear");
 }
 
+void writeWavFile(const char* filename, const double* samples, size_t numSamples) {
+    WavHeader header;
+    memcpy(header.chunkID, "RIFF", 4);
+    memcpy(header.format, "WAVE", 4);
+    memcpy(header.subchunk1ID, "fmt ", 4);
+    header.subchunk1Size = 16;
+    header.audioFormat = 1; // PCM
+    header.numChannels = 1;
+    header.sampleRate = (uint32_t)FS;
+    header.bitsPerSample = 16;
+    header.byteRate = header.sampleRate * header.numChannels * header.bitsPerSample / 8;
+    header.blockAlign = header.numChannels * header.bitsPerSample / 8;
+    memcpy(header.subchunk2ID, "data", 4);
+    header.subchunk2Size = (uint32_t)(numSamples * header.bitsPerSample / 8);
+    header.chunkSize = 36 + header.subchunk2Size;
+
+    FILE* file;
+    fopen_s(&file, filename, "wb");
+    if (!file) {
+        perror("Ошибка создания файла");
+        return;
+    }
+
+    // Запись заголовка
+    fwrite(&header, sizeof(WavHeader), 1, file);
+
+    // Запись аудиоданных
+    for (size_t i = 0; i < numSamples; i++) {
+        float sample = samples[i];
+        // Ограничение амплитуды
+        if (sample > 1.0f) sample = 1.0f;
+        if (sample < -1.0f) sample = -1.0f;
+        int16_t intSample = (int16_t)(sample * 32767.0f);
+        fwrite(&intSample, sizeof(int16_t), 1, file);
+    }
+
+    fclose(file);
+}
+
 int main() {
-    
+    size_t size = sizeof(int);
     setlocale(LC_ALL, "Russian");
     int choice;
     string input;
@@ -180,7 +242,78 @@ void task2() {
 
 void task3() {
     clearScreen();
+    double fs = 16000;
+    int chirpSamples = (int)(T * fs);
 
+    float* chirp = (float*)malloc(chirpSamples * sizeof(float));
+   
+    double k = pow(F1 / F0, 1 / T);
+    double lnk = log(k);
+
+    const double fs_inv = 1.0 / FS;      // 1/fs для оптимизации
+    const double two_pi = 2.0 * PI;      // 2*PI
+    const double f0 = F0;
+    const double a = A;
+
+    double result = 0;
+    __asm {
+        push ebx
+        push edi
+        push esi
+
+        mov edi, chirp
+        xor esi, esi
+
+        finit
+
+        p0 :
+        cmp esi, [chirpSamples]   // Проверка завершения цикла
+            jge p1
+
+            mov ebx, esi
+                push ebx
+                fild dword ptr[esp]      // st(0) = i
+                fld[fs_inv]              // st(0) = 1/fs, st(1) = i
+                    fmulp st(1), st(0)        // st(0) = t = i/fs
+
+                        fld st(0)
+                        fld[k]
+                        fyl2x
+                            fld1
+                            fld st(1)
+                            fprem
+                            f2xm1
+                            fadd
+                            fscale
+                            fxch st(1)
+                            fstp st  // st(0) = k^t
+
+
+                            fld1
+                            fsub
+                            fdiv[lnk] // st(0) = (k ^ t - 1)/ ln(k)
+
+                            fmul[f0] // st(0) = st(0) * f0
+                            fmul[two_pi] // st(0) = st(0) * 2 * PI
+
+                            fsin
+                            fmul[a]
+                            fstp dword ptr[edi + esi * 4]
+                            ffree st(0)
+                            add esp, 4
+                            inc esi
+                            jmp p0
+                        p1 :
+                            fwait
+
+                            pop esi
+                            pop edi
+                            pop ebx
+    }
+
+    for (int i = 0; i < chirpSamples; i++) {
+        cout << chirp[i] << ",";
+    }
     system("pause");
 }
 
@@ -265,8 +398,8 @@ void dop() {
     }   
 
     cout << "Результат вычесления FPU: " << R << endl;
-    float R_cpp = (cos(x) * sqrt(sin(y)*pow(x,y))) / (y * log2(x + 1)) + exp(y) - tan(x / y) - exp2(x-1);
-    cout << "Результат вычесления C++: " << R_cpp << endl;
+    //float R_cpp = (cos(x) * sqrt(sin(y)*pow(x,y))) / (y * log2(x + 1)) + exp(y) - tan(x / y) - exp2(x-1);
+    //cout << "Результат вычесления C++: " << R_cpp << endl;
 
 
     system("pause");

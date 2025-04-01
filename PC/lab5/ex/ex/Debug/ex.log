@@ -1,0 +1,4 @@
+﻿  ex.cpp
+E:\3 курс\6semestr\PC\lab5\ex\ex.cpp(2,9): warning C4081: требуется "идентификатор"; обнаружен "inline"
+E:\3 курс\6semestr\PC\lab5\ex\ex.cpp(5,6): warning C4326: возвращаемый тип "main" должен быть "int", а не "void"
+  ex.vcxproj -> E:\3 курс\6semestr\PC\lab5\ex\Debug\ex.exe

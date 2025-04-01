@@ -1,0 +1,5 @@
+﻿  main.cpp
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(315,1): warning C4799: функция "dop3" не имеет инструкции EMMS
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(147,1): warning C4799: функция "task2" не имеет инструкции EMMS
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(284,1): warning C4799: функция "dop2" не имеет инструкции EMMS
+  lab4.vcxproj -> E:\3 курс\6semestr\PC\lab4\lab4\Debug\lab4.exe

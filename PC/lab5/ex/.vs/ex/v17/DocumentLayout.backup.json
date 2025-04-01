@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\3 \u043A\u0443\u0440\u0441\\6semestr\\PC\\lab5\\ex\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EBA915D0-C8A9-45F4-9B5C-E238CE15BAC4}|ex.vcxproj|E:\\3 \u043A\u0443\u0440\u0441\\6semestr\\PC\\lab5\\ex\\ex.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EBA915D0-C8A9-45F4-9B5C-E238CE15BAC4}|ex.vcxproj|solutionrelative:ex.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ex.cpp",
+              "DocumentMoniker": "E:\\3 \u043A\u0443\u0440\u0441\\6semestr\\PC\\lab5\\ex\\ex.cpp",
+              "RelativeDocumentMoniker": "ex.cpp",
+              "ToolTip": "E:\\3 \u043A\u0443\u0440\u0441\\6semestr\\PC\\lab5\\ex\\ex.cpp*",
+              "RelativeToolTip": "ex.cpp*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-03-23T15:06:19.952Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

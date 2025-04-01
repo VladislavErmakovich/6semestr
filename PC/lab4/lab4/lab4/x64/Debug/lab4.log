@@ -1,0 +1,110 @@
+﻿  img_lib.cpp
+  main.cpp
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(27,5): error C4235: использовано нестандартное расширение: ключевое слово "__asm" данной архитектурой не поддерживается
+  Создание кода...
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(28,9): error C2065: mov: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(28,13): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "esi"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(28,13): error C2065: esi: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(29,9): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "mov"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(29,9): error C2065: mov: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(29,13): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "ecx"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(29,13): error C2065: ecx: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(30,9): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "pxor"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(30,9): error C2065: pxor: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(30,14): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "mm1"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(30,14): error C2065: mm1: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(30,19): error C2065: mm1: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(31,9): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "check_loop"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(32,9): error C2065: movd: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(32,14): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "mm0"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(32,14): error C2065: mm0: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(33,13): error C2760: синтаксическая ошибка: непредвиденный элемент "movd". Ожидается "{"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(33,18): error C2065: eax: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(33,23): error C2065: mm0: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(34,17): error C2146: синтаксическая ошибка: отсутствие "," перед идентификатором "test"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(104,5): error C4235: использовано нестандартное расширение: ключевое слово "__asm" данной архитектурой не поддерживается
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(105,9): error C2065: mov: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(105,13): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "esi"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(105,13): error C2065: esi: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(106,9): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "mov"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(106,9): error C2065: mov: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(106,13): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "edi"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(106,13): error C2065: edi: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(107,9): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "mov"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(107,9): error C2065: mov: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(107,13): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "ebx"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(107,13): error C2065: ebx: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(108,9): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "mov"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(108,9): error C2065: mov: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(108,13): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "ecx"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(108,13): error C2065: ecx: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(110,9): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "p0"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(111,9): error C2065: movq: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(111,14): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "mm0"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(111,14): error C2065: mm0: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(112,13): error C2760: синтаксическая ошибка: непредвиденный элемент "movq". Ожидается "{"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(112,18): error C2065: mm1: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(113,17): error C2760: синтаксическая ошибка: непредвиденный элемент "pmullw". Ожидается "{"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(113,24): error C2065: mm0: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(113,29): error C2065: mm1: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(114,21): error C2146: синтаксическая ошибка: отсутствие "," перед идентификатором "movq"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(151,5): error C4235: использовано нестандартное расширение: ключевое слово "__asm" данной архитектурой не поддерживается
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(152,13): error C2065: esi: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(152,9): error C3192: синтаксическая ошибка: "^" не является префиксным оператором (возможно, имелось в виду "*"?)
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(152,18): error C2065: esi: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(153,9): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "mov"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(153,9): error C2065: mov: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(153,13): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "esi"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(153,13): error C2065: esi: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(154,9): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "mov"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(154,9): error C2065: mov: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(154,13): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "ecx"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(154,13): error C2065: ecx: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(155,13): error C2065: ebx: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(155,18): error C2065: ebx: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(157,9): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "lp"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(158,9): error C2065: movq: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(158,14): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "mm0"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(158,14): error C2065: mm0: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(159,13): error C2760: синтаксическая ошибка: непредвиденный элемент "movq". Ожидается "{"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(159,18): error C2065: mm1: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(159,23): error C2065: mm0: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(160,17): error C2146: синтаксическая ошибка: отсутствие "," перед идентификатором "psrlq"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(237,5): error C4235: использовано нестандартное расширение: ключевое слово "__asm" данной архитектурой не поддерживается
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(238,9): error C2065: mov: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(238,13): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "esi"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(238,13): error C2065: esi: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(239,9): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "mov"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(239,9): error C2065: mov: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(239,13): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "edi"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(239,13): error C2065: edi: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(240,9): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "mov"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(240,9): error C2065: mov: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(240,13): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "ebx"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(240,13): error C2065: ebx: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(241,9): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "mov"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(241,9): error C2065: mov: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(241,13): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "ecx"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(241,13): error C2065: ecx: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(243,9): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "lp"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(244,9): error C2065: movq: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(244,14): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "mm0"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(244,14): error C2065: mm0: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(245,13): error C2760: синтаксическая ошибка: непредвиденный элемент "movq". Ожидается "{"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(245,18): error C2065: mm1: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(246,17): error C2760: синтаксическая ошибка: непредвиденный элемент "pmullw". Ожидается "{"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(246,24): error C2065: mm0: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(246,29): error C2065: mm1: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(247,21): error C2146: синтаксическая ошибка: отсутствие "," перед идентификатором "movq"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(281,5): error C4235: использовано нестандартное расширение: ключевое слово "__asm" данной архитектурой не поддерживается
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(282,9): error C2065: mov: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(282,13): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "esi"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(282,13): error C2065: esi: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(283,9): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "mov"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(283,9): error C2065: mov: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(283,13): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "ecx"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(283,13): error C2065: ecx: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(284,9): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "lp"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(285,9): error C2065: movd: необъявленный идентификатор
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(285,14): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "mm0"
+E:\3 курс\6semestr\PC\lab4\lab4\main.cpp(285,14): error C1003: число ошибок превышает 100; остановка компиляции
